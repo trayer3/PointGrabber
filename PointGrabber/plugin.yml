@@ -8,7 +8,7 @@ commands:
    pointcapture:
       description: Grab the coordinates where you are standing. [pointnumber] overrides the current numbering.
       usage: /<command> radius displayname time [pointnumber]
-   pointnewsection
+   pointnewsection:
       description: Add spacing and indicator of new section in file.
       usage: /<command> [comment]
    pointother:
