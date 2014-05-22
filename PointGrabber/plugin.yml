@@ -3,8 +3,8 @@ main: com.projectreddog.pointgrabber.PointGrabber
 version: .01
 commands:
    pointpvp:
-      description: Grab the coordinates where you are standing. [yaw] will include yaw in point data.
-      usage: /<command> [yaw]
+      description: Grab the coordinates where you are standing. [noyaw] will include yaw in point data.
+      usage: /<command> [noyaw, no, n]
    pointcapture:
       description: Grab the coordinates where you are standing. [pointnumber] overrides the current numbering.
       usage: /<command> radius displayname time [pointnumber]
@@ -12,7 +12,7 @@ commands:
       description: Add spacing and indicator of new section in file.
       usage: /<command> [comment]
    pointother:
-      description: Grab the coordinates where you are standing. Different heading names: LobbySpawn, Spawn (includes yaw), Penalty.
+      description: Point with different heading names LobbySpawn, Spawn (includes yaw), Penalty.
       usage: /<command> name
    pointsetnumber:
       description: Change the current numbering value.

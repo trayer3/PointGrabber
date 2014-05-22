@@ -20,7 +20,7 @@ public class PointGrabber extends JavaPlugin implements CommandExecutor {
 	 */
 	FileWriter fileWriter;
 	BufferedWriter buffWriter;
-	String path = "PointGrabberFiles";
+	String path = "plugins/PointGrabberFiles";
 	
 	/**
 	 *  General Variables
@@ -88,22 +88,22 @@ public class PointGrabber extends JavaPlugin implements CommandExecutor {
 				if( args.length == 0 )
 				{
 					/**
-					 *  Grab only the X, Y, and Z of Point.
+					 *  Grab only the X, Y, and Z of Point with Yaw.
 					 */
 					writePointNum(currentPVPPointNum);
 					currentPVPPointNum++;
-					writeXYZ(location, "no", "    ");
+					writeXYZ(location, "yes", "    ");
 				}
 				else if( args.length == 1 )
 				{
-					if( args[0].equalsIgnoreCase("yaw") )
+					if( args[0].equalsIgnoreCase("noyaw") || args[0].equalsIgnoreCase("no") || args[0].equalsIgnoreCase("n") )
 					{
 						/**
-						 *  PVP Point creation with Yaw included.
+						 *  PVP Point creation with Yaw not included.
 						 */
 						writePointNum(currentPVPPointNum);
 						currentPVPPointNum++;
-						writeXYZ(location, "yes", "    ");
+						writeXYZ(location, "no", "    ");
 					}
 					else
 					{
@@ -180,7 +180,11 @@ public class PointGrabber extends JavaPlugin implements CommandExecutor {
 						writePointHeader("  Penalty");
 						writeXYZ(location, "no", "    ");
 					}
-					
+					else
+					{
+						writePointHeader(args[0]);
+						writeXYZ(location, "yes", "  ");
+					}	
 				}
 				else
 				{
