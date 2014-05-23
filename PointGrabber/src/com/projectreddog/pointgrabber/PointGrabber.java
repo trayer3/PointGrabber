@@ -90,9 +90,9 @@ public class PointGrabber extends JavaPlugin implements CommandExecutor {
 					/**
 					 *  Grab only the X, Y, and Z of Point with Yaw.
 					 */
-					writePointNum(currentPVPPointNum);
+					writeContent("\nRespawnPoint" + currentPVPPointNum + ":");
 					currentPVPPointNum++;
-					writeXYZ(location, "yes", "    ");
+					writeXYZ(location, "yes", "  ");
 				}
 				else if( args.length == 1 )
 				{
@@ -101,7 +101,7 @@ public class PointGrabber extends JavaPlugin implements CommandExecutor {
 						/**
 						 *  PVP Point creation with Yaw not included.
 						 */
-						writePointNum(currentPVPPointNum);
+						writeContent("\nRespawnPoint" + currentPVPPointNum + ":");
 						currentPVPPointNum++;
 						writeXYZ(location, "no", "    ");
 					}
@@ -127,7 +127,7 @@ public class PointGrabber extends JavaPlugin implements CommandExecutor {
 					/**
 					 *  Radius, Display Name, Capture Time
 					 */
-					writePointNum(currentCapturePointNum);
+					writeContent("\n  Point" + currentCapturePointNum + ":");
 					currentCapturePointNum++;
 					writeXYZ(location, "no", "    ");
 					writeOther("R: ", args[0], "    ");
@@ -139,7 +139,8 @@ public class PointGrabber extends JavaPlugin implements CommandExecutor {
 					/**
 					 *  Manually Setting the Point Number
 					 */
-					writePointNum(Integer.parseInt(args[3]));
+					currentCapturePointNum = Integer.parseInt(args[3]);
+					writeContent("\n  Point" + currentCapturePointNum + ":");
 					writeXYZ(location, "no", "    ");
 					writeOther("R: ", args[0], "    ");
 					writeOther("Name: ", args[1], "    ");
@@ -167,22 +168,22 @@ public class PointGrabber extends JavaPlugin implements CommandExecutor {
 					 */
 					if( args[0].equalsIgnoreCase("lobbyspawn") )
 					{
-						writePointHeader("LobbySpawn");
+						writePointHeader("\nLobbySpawn:");
 						writeXYZ(location, "no", "  ");
 					}
 					else if( args[0].equalsIgnoreCase("spawn") )
 					{
-						writePointHeader("  Spawn");
+						writePointHeader("\n  Spawn:");
 						writeXYZ(location, "yes", "    ");
 					}
 					else if( args[0].equalsIgnoreCase("penalty") )
 					{
-						writePointHeader("  Penalty");
+						writePointHeader("\n  Penalty:");
 						writeXYZ(location, "no", "    ");
 					}
 					else
 					{
-						writePointHeader(args[0]);
+						writePointHeader("\n" + args[0]);
 						writeXYZ(location, "yes", "  ");
 					}	
 				}
@@ -246,15 +247,6 @@ public class PointGrabber extends JavaPlugin implements CommandExecutor {
 		}
 
 		return false;  // Command fail
-	}
-
-	private void writePointNum(int pointNum) {
-		/**
-		 *  Write a Point with the specified number.
-		 */
-		String content = "\n  Point" + pointNum;
-		
-		writeContent(content);
 	}
 
 	private void writeXYZ(Location location, String yaw, String spacing) {
